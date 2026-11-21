@@ -1,0 +1,36 @@
+[package]
+name = "winisland"
+version = "0.1.0"
+edition = "2021"
+description = "A native Dynamic Island for Windows 11"
+
+[dependencies]
+winit = "0.30"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+tracing = "0.1"
+
+[dependencies.windows]
+version = "0.58"
+features = [
+    "Foundation",
+    "Foundation_Numerics",
+    "System",
+    "UI",
+    "UI_Composition",
+    "UI_Composition_Desktop",
+    "Win32_Foundation",
+    "Win32_System_WinRT",
+    "Win32_System_WinRT_Composition",
+    "Win32_UI_Shell",
+]
+
+[build-dependencies]
+winres = "0.1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
